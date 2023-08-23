@@ -1,6 +1,7 @@
 // import Image from "next/image";
-import Text, {TextProps} from "../Text";
-import arrow from "../assets/arrow.svg?url";
+import { twMerge } from "tailwind-merge";
+import Text, { TextProps } from "../Text";
+import { Arrow } from "../assets";
 import React from "react";
 
 interface BreadcrumbProps {
@@ -25,7 +26,7 @@ export default function Breadcrumb({
             className={`flex items-center ${index !== 0 ? "mx-2" : ""}`}
           >
             {index !== 0 && (
-               <img src={arrow} alt="breadcrumb_arrow_img" className="mx-2" />
+              <Arrow alt="breadcrumb_arrow_img" className="mx-2" />
             )}
             <Text
               size={textSize}
@@ -40,4 +41,3 @@ export default function Breadcrumb({
     </nav>
   );
 }
-

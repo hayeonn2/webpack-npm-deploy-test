@@ -1,6 +1,6 @@
 import React, { ImgHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
-import defaultImage from "../assets/avatarDefault.svg?url";
+import defaultImage from "../assets/avatarDefault.svg";
 
 interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   size?: number;
@@ -20,9 +20,12 @@ export default function Avatar({
 }: AvatarProps) {
   const ringClass = ring ? "ring-2" : "";
   return (
-    <img 
+    <img
       src={src ? src : defaultImage}
-      className={twMerge(`rounded-full object-cover ${ringColor} ${ringClass}`, className)}
+      className={twMerge(
+        `rounded-full object-cover ${ringColor} ${ringClass}`,
+        className,
+      )}
       width={size}
       height={size}
       alt={props.alt ? props.alt : ""}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState, useRef } from "react";
-import magnifyingfocus from "../assets/magnifyingfocus.svg?url";
-import magnifying from "../assets/magnifying.svg?url";
+import magnifyingfocus from "../assets/magnifyingfocus.svg";
+import magnifying from "../assets/magnifying.svg";
 
 export interface SearchfieldProps {
   onClick?: (value: string) => void;

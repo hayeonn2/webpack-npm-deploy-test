@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, ReactNode } from "react";
-import Icon, { IconnameProps } from "../Icon";
-import Check from "../assets/check.svg?url";
-import Checked from "../assets/checked.svg?url";
+import Icon, { IconNameProps } from "../Icon";
+import Check from "../assets/check.svg";
+import Checked from "../assets/checked.svg";
 import Text from "../Text";
 
 export type SelectProps = {
@@ -11,7 +11,7 @@ export type SelectProps = {
   children?: ReactNode;
   className?: string;
   checkbox?: boolean;
-  icon?: IconnameProps;
+  icon?: IconNameProps;
   active?: boolean;
 };
 

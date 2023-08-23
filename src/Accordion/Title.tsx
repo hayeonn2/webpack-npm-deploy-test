@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { ReactNode, SyntheticEvent } from "react";
-import toggleButton from "../assets/toggleButton.svg?url";
+import toggleButton from "../assets/toggleButton.svg";
 
 type TitleProps = {
   children: ReactNode;

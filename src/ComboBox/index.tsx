@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, Children, ReactNode, SyntheticEvent } from "react";
-import Icon, { IconnameProps } from "../Icon";
+import Icon, { IconNameProps } from "../Icon";
 import Text from "../Text";
 
 interface ComboBoxProps {
   text: string;
-  icon: IconnameProps;
+  icon: IconNameProps;
   children: ReactNode;
 }
 export default function ComboBox({
