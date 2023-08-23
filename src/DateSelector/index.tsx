@@ -5,8 +5,8 @@ import getMonth from "date-fns/getMonth";
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import selectDate from "../assets/selectDate.svg?url";
-import Arrow from "../assets/selectArrow.svg?url";
+import selectDate from "../assets/selectDate.svg";
+import Arrow from "../assets/selectArrow.svg";
 import "./style.css";
 
 export interface DateSelectorProps {

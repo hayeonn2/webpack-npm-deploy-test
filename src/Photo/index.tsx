@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import React, { ImgHTMLAttributes } from "react";
 import Image from "next/image";
-import defaultPhoto from "../assets/photocardDefault.svg?url";
+import defaultPhoto from "../assets/photocardDefault.svg";
 
 export interface PhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;

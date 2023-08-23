@@ -36,25 +36,57 @@ module.exports = {
           },
         ],
       },
+      // svg
+      {
+        test: /\.svg$/i,
+        type: "asset",
+        resourceQuery: /url/,
+        parser: {
+          dataUrlCondition: {
+            maxSize: 2 * 1024, // 2kb 미만은 base64형태로 사용
+          },
+        },
+        generator: {
+          filename: "static/media/[name].[contenthash:8][ext]",
+        },
+      },
       {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
         resourceQuery: { not: [/url/] },
         use: ["@svgr/webpack"],
       },
-      {
-        type: "asset",
-        resourceQuery: /url/,
-        generator: {
-          outputPath: "./assets/",
-          filename: "[name][ext]",
-        },
-        parser: {
-          dataUrlCondition: {
-            maxSize: 100 * 1024,
-          },
-        },
-      },
+      // {
+      //   test: /\.svg$/i,
+      //   oneOf: [
+      //     {
+      //       type: "asset/resource",
+      //       generator: {
+      //         //remove this if not required
+      //         filename: "images/[name][ext]",
+      //       },
+      //       issuer: {
+      //         //Only use file-loader aka assets/resource for svg's referenced in css/scss
+      //         and: [/\.(sa|sc|c)ss$/],
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //   //use SVGR for imports in js/jsx files
+      //   test: /\.svg$/i,
+      //   use: [
+      //     "babel-loader",
+      //     {
+      //       loader: "@svgr/webpack",
+      //       options: {
+      //         babel: false,
+      //         icon: true,
+      //       },
+      //     },
+      //   ],
+      //   issuer: /\.[jt]sx?$/,
+      // },
     ],
   },
   resolve: {
