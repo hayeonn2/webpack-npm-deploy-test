@@ -12,13 +12,7 @@ function Design({ width, height, ...props }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect
-        x="0.975098"
-        y="0.268555"
-        width="20"
-        height="20"
-        fill="url(#pattern6)"
-      />
+      <rect width="20" height="20" fill="url(#pattern6)" />
       <defs>
         <pattern
           id="pattern6"

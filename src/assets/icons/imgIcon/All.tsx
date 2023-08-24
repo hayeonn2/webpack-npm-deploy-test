@@ -13,13 +13,7 @@ function All({ width, height, ...props }: IconProps) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <g clip-path="url(#clip0_1_4341)">
-        <rect
-          x="0.179688"
-          y="1.6709"
-          width="20"
-          height="17.1951"
-          fill="url(#pattern2)"
-        />
+        <rect width="20" height="17.1951" fill="url(#pattern2)" />
       </g>
       <defs>
         <pattern
