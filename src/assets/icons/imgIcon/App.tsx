@@ -17,11 +17,11 @@ function App({ width, height, ...props }: IconProps) {
         y="0.268555"
         width="20"
         height="20"
-        fill="url(#pattern0)"
+        fill="url(#pattern4)"
       />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern4"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

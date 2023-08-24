@@ -17,11 +17,11 @@ function Game({ width, height, ...props }: IconProps) {
         y="0.268555"
         width="20"
         height="20"
-        fill="url(#pattern0)"
+        fill="url(#pattern9)"
       />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern9"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

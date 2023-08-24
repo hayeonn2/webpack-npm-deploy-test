@@ -1,14 +1,7 @@
 import React from "react";
 import { IconProps } from "@/src/Icon";
 
-function AngelFace({
-  width,
-  height,
-  ...props
-}: {
-  width: number;
-  height: number;
-}) {
+function AngelFace({ width, height, ...props }: IconProps) {
   return (
     <svg
       {...props}
@@ -19,10 +12,10 @@ function AngelFace({
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="20" height="20" fill="url(#pattern0)" />
+      <rect width="20" height="20" fill="url(#pattern3)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern3"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

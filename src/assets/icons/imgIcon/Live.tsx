@@ -12,10 +12,10 @@ function Live({ width, height, ...props }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="20" height="20" fill="url(#pattern0)" />
+      <rect width="20" height="20" fill="url(#pattern13)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern13"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
