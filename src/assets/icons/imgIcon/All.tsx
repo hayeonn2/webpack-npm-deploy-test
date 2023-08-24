@@ -18,12 +18,12 @@ function All({ width, height, ...props }: IconProps) {
           y="1.6709"
           width="20"
           height="17.1951"
-          fill="url(#pattern0)"
+          fill="url(#pattern2)"
         />
       </g>
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern2"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
