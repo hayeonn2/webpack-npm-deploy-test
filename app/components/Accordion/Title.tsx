@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ReactNode, SyntheticEvent } from "react";
-import toggleButton from "@/app/assets/toggleButton.svg";
+import { Arrow } from "@/app/assets";
+
 
 type TitleProps = {
   children: ReactNode;
@@ -14,7 +14,7 @@ export default function Title({ children, className, onClick }: TitleProps) {
       className="flex mb-3 cursor-pointer items-center w-full"
       onClick={onClick}
     >
-      <Image src={toggleButton} alt="토글 버튼" className={className} />
+      <Arrow alt="토글 버튼" className={className} />
       <span className="ml-2">{children}</span>
     </button>
   );

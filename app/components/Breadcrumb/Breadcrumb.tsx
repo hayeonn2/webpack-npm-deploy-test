@@ -1,32 +1,37 @@
-import Text from "@/app/components/Text.tsx";
-import Icon from "@/app/components/Icon/Icon";
-
-interface BreadcrumbItem {
-  label: string;
-}
+import Text, { TextProps }  from "@/app/components/Text.tsx";
+import { Arrow } from "@/app/assets";
+import React from "react";
 
 interface BreadcrumbProps {
   menu: string[];
+  className?: string;
+  textSize?: TextProps["size"];
+  textWeight?: TextProps["weight"];
 }
 
-export default function Breadcrumb({ menu }: BreadcrumbProps) {
-  const breadcrumbs: BreadcrumbItem[] = menu.map(label => ({ label }));
-
+export default function Breadcrumb({
+  menu,
+  className,
+  textSize = "lg",
+  textWeight = "semibold",
+}: BreadcrumbProps) {
   return (
-    <nav>
+    <nav className={` ${className}`}>
       <ol className="list-none inline-flex">
-        {breadcrumbs.map((item, index) => (
-          <li key={item.label} className="flex items-center">
+        {menu.map((item, index) => (
+          <li
+            key={item}
+            className={`flex items-center ${index !== 0 ? "mx-2" : ""}`}
+          >
             {index !== 0 && (
-              <Icon
-                name="BreadArrow"
-                className="mx-2 !fill-Grayscale-40"
-                width={7}
-                height={10}
-              />
+              <Arrow alt="breadcrumb_arrow_img" className="mx-2" />
             )}
-            <Text size="lg" weight="semibold" className="text-Grayscale-80">
-              {item.label}
+            <Text
+              size={textSize}
+              weight={textWeight}
+              className="text-Grayscale-80"
+            >
+              {item}
             </Text>
           </li>
         ))}
