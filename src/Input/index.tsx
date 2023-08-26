@@ -37,7 +37,6 @@ export default function Input({
   return (
     <>
       <p className="ml-4">
-        {/* <Text size="sm" weight="bold" className={`text-Primary-80 `}> */}
         <Text size="sm" weight="bold" className={textColorMapping[labelColor]}>
           {label}
         </Text>

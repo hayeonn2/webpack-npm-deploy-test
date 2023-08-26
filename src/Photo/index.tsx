@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import React, { ImgHTMLAttributes } from "react";
 import Image from "next/image";
-import defaultPhoto from "../assets/photocardDefault.svg";
+import { PhotoCardDefault } from "../assets";
 
 export interface PhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
@@ -15,12 +15,20 @@ export default function Photo({ className, ...props }: PhotoProps) {
         `box-border w-245 h-145 border-0 rounded-sm`,
       )}
     >
-      <Image
-        width={props.width ? Number(props.width) : 245}
-        height={props.height ? Number(props.height) : 145}
-        src={props.src ? props.src : defaultPhoto}
-        alt={props.alt ? props.alt : ""}
-      />
+      {props.src ? (
+        <Image
+          width={props.width ? Number(props.width) : 245}
+          height={props.height ? Number(props.height) : 145}
+          src={props.src}
+          alt={props.alt ? props.alt : ""}
+        />
+      ) : (
+        <PhotoCardDefault
+          width={props.width ? Number(props.width) : 245}
+          height={props.height ? Number(props.height) : 145}
+          alt={props.alt ? props.alt : ""}
+        />
+      )}
     </div>
   );
 }

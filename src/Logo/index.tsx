@@ -1,6 +1,5 @@
-import Image from "next/image";
 import React from "react";
-import logo from "../assets/logo.svg";
+import { LogoImage } from "../assets";
 
 interface LogoProps {
   width: number;
@@ -10,9 +9,8 @@ interface LogoProps {
 
 export default function Logo({ width, height, className }: LogoProps) {
   return (
-    <Image
+    <LogoImage
       className={`${className} block`}
-      src={logo}
       width={width}
       height={height}
       alt="logo"

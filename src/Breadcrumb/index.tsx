@@ -1,5 +1,3 @@
-// import Image from "next/image";
-import { twMerge } from "tailwind-merge";
 import Text, { TextProps } from "../Text";
 import { Arrow } from "../assets";
 import React from "react";
