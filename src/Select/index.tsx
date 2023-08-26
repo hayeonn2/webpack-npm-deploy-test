@@ -2,8 +2,7 @@
 
 import React, { useState, ReactNode } from "react";
 import Icon, { IconNameProps } from "../Icon";
-import Check from "../assets/check.svg";
-import Checked from "../assets/checked.svg";
+import { Check } from "../assets";
 import Text from "../Text";
 
 export type SelectProps = {

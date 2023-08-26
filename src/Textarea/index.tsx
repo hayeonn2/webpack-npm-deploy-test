@@ -5,7 +5,6 @@ export interface TextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   mode: "title" | "content";
   onChangeTitle?: (value: string) => void;
-  // onChangeAuthor?: (value: string) => void;
   onChangeContent?: (value: string) => void;
   className?: string;
   placeholder?: string;
@@ -18,7 +17,6 @@ export default function Textarea({
   className,
   placeholder = "입력해주세요",
   onChangeTitle,
-  // onChangeAuthor,
   author,
   onChangeContent,
   ...textareaProps
