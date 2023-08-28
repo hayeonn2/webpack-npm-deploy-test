@@ -1,5 +1,5 @@
 import React from "react";
-import { IconProps } from "@/src/Icon";
+import { IconProps } from "@/components/Icon/Icon";
 
 function CoverBox({ width, height, ...props }: IconProps) {
   return (
