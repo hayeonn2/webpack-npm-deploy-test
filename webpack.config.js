@@ -1,17 +1,23 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const isProd = process.env.NODE_ENV === "production";
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
+  devtool: isProd ? false : "source-map",
   mode: "production",
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
-    libraryTarget: "umd",
-    umdNamedDefine: true,
-    globalObject: "this",
-    publicPath: "",
+    filename: "[name].js",
+    chunkFilename: "[name].[hash].bundle.js",
+    clean: true,
   },
+  // optimization: {
+  //   minimizer: true,
+  // },
   module: {
     rules: [
       {
@@ -56,37 +62,6 @@ module.exports = {
         resourceQuery: { not: [/url/] },
         use: ["@svgr/webpack"],
       },
-      // {
-      //   test: /\.svg$/i,
-      //   oneOf: [
-      //     {
-      //       type: "asset/resource",
-      //       generator: {
-      //         //remove this if not required
-      //         filename: "images/[name][ext]",
-      //       },
-      //       issuer: {
-      //         //Only use file-loader aka assets/resource for svg's referenced in css/scss
-      //         and: [/\.(sa|sc|c)ss$/],
-      //       },
-      //     },
-      //   ],
-      // },
-      // {
-      //   //use SVGR for imports in js/jsx files
-      //   test: /\.svg$/i,
-      //   use: [
-      //     "babel-loader",
-      //     {
-      //       loader: "@svgr/webpack",
-      //       options: {
-      //         babel: false,
-      //         icon: true,
-      //       },
-      //     },
-      //   ],
-      //   issuer: /\.[jt]sx?$/,
-      // },
     ],
   },
   resolve: {
@@ -99,5 +74,19 @@ module.exports = {
     react: "react",
     "react-dom": "react-dom",
   },
-  plugins: [new MiniCssExtractPlugin({ filename: "style.css" })],
+  plugins: [
+    new MiniCssExtractPlugin({ filename: "style.css" }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      reportFilename: "bundle-report.html",
+      openAnalyzer: false,
+      generateStatsFile: true,
+      statsFilename: "bundle-report.json",
+    }),
+    new TerserPlugin({
+      terserOptions: {
+        compress: {},
+      },
+    }),
+  ],
 };
