@@ -1,47 +1,52 @@
 const path = require("path");
+const webpack = require("webpack");
+const { EsbuildPlugin } = require("esbuild-loader");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const isProd = process.env.NODE_ENV === "production";
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-  devtool: isProd ? false : "source-map",
   mode: "production",
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
-    chunkFilename: "[name].[hash].bundle.js",
+    filename: "static/js/[name].js",
+    chunkFilename: "static/js/[name].chunk.js",
+    publicPath: "/",
     clean: true,
   },
-  // optimization: {
-  //   minimizer: true,
-  // },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new EsbuildPlugin({
+        target: "es2015", // Syntax to transpile to (see options below for possible values)
+        css: true,
+      }),
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: "all",
+      name: false,
+    },
+  },
   module: {
     rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: "ts-loader",
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "",
-            },
-          },
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "postcss-loader",
-          },
-        ],
-      },
       // svg
       {
         test: /\.svg$/i,
@@ -53,7 +58,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "static/media/[name].[contenthash:8][ext]",
+          filename: "static/media/[name][ext]",
         },
       },
       {
@@ -62,26 +67,46 @@ module.exports = {
         resourceQuery: { not: [/url/] },
         use: ["@svgr/webpack"],
       },
+      {
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules/,
+        loader: "esbuild-loader",
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          {
+            loader: "esbuild-loader",
+            options: {
+              minify: true,
+            },
+          },
+        ],
+      },
     ],
   },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
-  },
-  externals: {
-    react: "react",
-    "react-dom": "react-dom",
-  },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "style.css" }),
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css|html)$/,
+      algorithm: "gzip", // gzip으로 압축
+      threshold: 10240, // 10kb 이상 압축
+      minRatio: 0.8,
+    }),
+    new MiniCssExtractPlugin({
+      filename: "static/css/[name].css",
+      chunkFilename: "static/css/[id].css",
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: "static",
-      reportFilename: "bundle-report.html",
       openAnalyzer: false,
       generateStatsFile: true,
-      statsFilename: "bundle-report.json",
     }),
     new TerserPlugin({
       terserOptions: {
