@@ -1,18 +1,17 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const isProd = process.env.NODE_ENV === "production";
-const TerserPlugin = require("terser-webpack-plugin");
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  devtool: isProd ? false : "source-map",
+  // devtool: isProd ? false : "source-map",
   mode: "production",
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
-    chunkFilename: "[name].[hash].bundle.js",
+    filename: "index.js",
+    // chunkFilename: "[name].[hash].bundle.js",
     clean: true,
   },
   // optimization: {
@@ -76,17 +75,12 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "style.css" }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: "static",
-      reportFilename: "bundle-report.html",
-      openAnalyzer: false,
-      generateStatsFile: true,
-      statsFilename: "bundle-report.json",
-    }),
-    new TerserPlugin({
-      terserOptions: {
-        compress: {},
-      },
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: "static",
+    //   reportFilename: "bundle-report.html",
+    //   openAnalyzer: false,
+    //   generateStatsFile: true,
+    //   statsFilename: "bundle-report.json",
+    // }),
   ],
 };
